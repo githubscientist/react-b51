@@ -1,29 +1,12 @@
-const App = () => {
+function App() {
+
+  console.log('Hello from Component');
+
   return (
-    <p>Hello World!</p>
+    <div>
+      <p>Hello World!</p>
+    </div>
   )
 }
 
 export default App;
-
-/*
-  - intialize git repo:
-
-    git init
-
-  - status of the changes:
-
-    git status
-
-  - show the logs of all the commits:
-
-    git log
-
-  - create a new branch
-
-    git branch branchname
-
-  - switch to a branch or commit
-
-    git checkout branchname/commit ID
-*/
