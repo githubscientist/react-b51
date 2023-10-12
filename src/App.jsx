@@ -1,10 +1,17 @@
 function App() {
+  const now = new Date();
 
-  console.log('Hello from Component');
+  // simple addition
+  const a = 10;
+  const b = 20;
 
   return (
     <div>
-      <p>Hello World!</p>
+      <p>Hello world, it is {now.toString()} </p>
+      
+      <p>
+        {a} plus {b} is { a + b }
+      </p>
     </div>
   )
 }
