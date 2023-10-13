@@ -1,12 +1,13 @@
 import React from 'react';
 import Note from './components/Note';
+import './styles/App.css';
 
 function App({notes}) {
 
   return (
     <div>
       <h1>Notes</h1>
-      <ul>
+      <ul id='list'>
         {
           notes.map(note => 
             <Note key={ note.id } note={ note } />
