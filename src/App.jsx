@@ -1,18 +1,22 @@
-// const App = () => {
-//   return (
-//     <div>
-//       <h1>App Component</h1>
-//       <p>Hello World</p>
-//     </div>
-//   )
-// }
+const Hello = (props) => {
+
+  console.log(props);
+
+  return (
+    <p>Hello {props.name}, you are { props.age } years old</p>
+  )
+}
 
 const App = () => {
+
+  const age = 25;
+
   return (
-    <>
-      <h1>App Component</h1>
-      <p>Hello World</p>
-    </>
+    <div>
+      <h1>Greetings</h1>
+      <Hello name='Sathish' age={10 + 20} />
+      <Hello name='Krish' age={ age } />
+    </div>
   )
 }
 
