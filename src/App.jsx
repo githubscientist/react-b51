@@ -3,10 +3,6 @@ import Note from './components/Note';
 
 function App({notes}) {
 
-  function handleSaveClick() {
-    console.log('save button clicked');
-  }
-
   return (
     <div>
       <h1>Notes</h1>
@@ -20,7 +16,7 @@ function App({notes}) {
 
       <form>
         <input />
-        <button onClick={handleSaveClick}>Save Note</button>
+        <button onClick={() => console.log('save button clicked')}>Save Note</button>
       </form>
     </div>
   )
