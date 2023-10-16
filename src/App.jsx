@@ -1,25 +1,17 @@
-// Function component
-// created as Javascript functions
-// it should return the jsx => HTML with Javascript embedded
-// function App() {
-//   return (
-//     <div>Hello World!</div>
-//   )
-// }
+import React from 'react';
 
-// export default App;
+function Hello({ name }) {
+  return (
+    <p>Hello { name }!</p>
+  )
+}
 
-// --------------------------------------------------------
-
-import { Component } from "react";
-
-// Class component
-class App extends Component {
-  render() {
-    return (
-      <div>Hello World!</div>
-    )
-  }
+function App() {
+  return (
+    <div>
+      <Hello name='Sathish' />
+    </div>
+  )
 }
 
 export default App;
