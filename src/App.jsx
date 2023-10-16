@@ -2,8 +2,12 @@ import React, { Component } from 'react';
 
 class Hello extends Component {
   render() {
+
+    // console.log(this.props);
+    const { name } = this.props;
+
     return (
-      <p>Hello World!</p>
+      <p>Hello { name }!</p>
     )
   }
 }
@@ -12,7 +16,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Hello />
+        <Hello name='Sathish' />
       </div>
     )
   }
