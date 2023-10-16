@@ -25,11 +25,29 @@ class App extends Component {
     })
   }
 
+  decrement = () => {
+    // update the state (data) of the count
+    this.setState({
+      // provide the new state
+      count: this.state.count - 1,
+    })
+  }
+
+  reset = () => {
+    // update the state (data) of the count
+    this.setState({
+      // provide the new state
+      count: 0,
+    })
+  }
+
   render() {
     return (
       <div>
         <p>Count: { this.state.count }</p>
         <button onClick={this.increment}>Increment</button>
+        <button onClick={this.decrement}>Decrement</button>
+        <button onClick={this.reset}>Reset</button>
       </div>
     )
   }
