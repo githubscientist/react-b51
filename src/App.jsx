@@ -1,32 +1,38 @@
-import { Component } from "react";
+// State: state refers to the data
+// that is used to manage and represent the internal state of the component.
+// it allows the components to keep track of and manage their own data -> the data will change over the time as a result of user interactions, data fetching, or other factors.
+
+// whenever the state of a component changes, it will cause re-rendering of the component
+
+import React, { Component } from 'react';
 
 class App extends Component {
 
-  // componentDidMount: called after the component has been rendered to the DOM
-  componentDidMount() {
-    console.log('Component mounted');
+  constructor(props) {
+    super(props); // to call the parent class constructor
+
+    // define the state
+    this.state = {
+      count: 0,
+    }
   }
 
-  // called immediately after the component updated in the DOM
-  // called on state or prop changes
-  componentDidUpdate() {
-    console.log('component state updated');
-  }
-
-  componentWillUnmount() {
-    // invoked just before the component is removed from the DOM
-    // releasing memory or resources
-    // detaching the events
-    // cancelling timers
+  increment = () => {
+    // update the state (data) of the count
+    this.setState({
+      // provide the new state
+      count: this.state.count + 1,
+    })
   }
 
   render() {
     return (
-      <p>Hello World!</p>
+      <div>
+        <p>Count: { this.state.count }</p>
+        <button onClick={this.increment}>Increment</button>
+      </div>
     )
   }
 }
 
 export default App;
-
-// component lifecycle: the different states/stages a component takes from getting created and rendered in the DOM to getting removed from the DOM
