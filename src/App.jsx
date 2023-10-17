@@ -12,7 +12,6 @@ function App() {
 
   const [counter, setCounter] = useState(0);
 
-
   function handleClick() {
     setCounter(counter + 1);
   }
