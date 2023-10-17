@@ -1,22 +1,36 @@
+// passing data from child to parent component
 import React, { useState } from 'react';
 
 // child component
-// receive the name as data props
-function Hello({ data }) {
+function ChildComponent({ sendDataToParent }) {
+  // data to be passed to the parent component
+  let message = `Hello Parent!`;
+
+  const sendData = () => {
+    sendDataToParent(message);
+  }
+
   return (
-    <p>Hello { data }</p>
+    <div>
+      <button onClick={sendData}>Send Data to Parent</button>
+    </div>
   )
 }
 
 // parent component
-// data: 'Sathish'
 function App() {
 
-  const [data, setData] = useState('Sathish');
+  // define a state to store the child data in the parent component
+  const [dataFromChild, setDataFromChild] = useState('');
+
+  const handleDataFromChild = (message) => {
+    setDataFromChild(message);
+  }
 
   return (
     <div>
-      <Hello data={ data } />
+      <div>Data From Child: {dataFromChild}</div>
+      <ChildComponent sendDataToParent={ handleDataFromChild } />
     </div>
   )
 }
