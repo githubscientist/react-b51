@@ -1,34 +1,22 @@
-// props drilling: props drilling occurs when you need to pass down the data through multiple nested components to reach the ones that require the data.
+import React, { useState } from 'react';
 
-import React from 'react';
-
-function GrandChildComponent({ data }) {
-  console.log(`from grand child component: ${data}`);
+// child component
+// receive the name as data props
+function Hello({ data }) {
   return (
-    <div>
-      <h3>Grand Child Component</h3>
-    </div>
+    <p>Hello { data }</p>
   )
 }
 
-function ChildComponent({ data }) {
-  console.log(data);
-  return (
-    <div>
-      <h2>Child Component</h2>
-      <GrandChildComponent data={ data } />
-    </div>
-  )
-}
-
+// parent component
+// data: 'Sathish'
 function App() {
 
-  const parentData = `Hello from Parent`;
+  const [data, setData] = useState('Sathish');
 
   return (
     <div>
-      <h2>Parent Component</h2>
-      <ChildComponent data={ parentData } />
+      <Hello data={ data } />
     </div>
   )
 }
