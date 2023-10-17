@@ -8,12 +8,7 @@
 
 import React, { useState } from 'react';
 import Display from './components/Display';
-
-function Button({ handleClick, name }) {
-  return (
-    <button onClick={handleClick}>{ name }</button>
-  )
-}
+import Button from './components/Button';
 
 function App() {
 
