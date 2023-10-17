@@ -7,12 +7,7 @@
 */
 
 import React, { useState } from 'react';
-
-function Display({ counter }) {
-  return (
-    <p>{ counter }</p>
-  )
-}
+import Display from './components/Display';
 
 function App() {
 
