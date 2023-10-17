@@ -9,6 +9,12 @@
 import React, { useState } from 'react';
 import Display from './components/Display';
 
+function Button({ handleClick, name }) {
+  return (
+    <button onClick={handleClick}>{ name }</button>
+  )
+}
+
 function App() {
 
   const [counter, setCounter] = useState(0);
@@ -28,9 +34,9 @@ function App() {
   return (
     <div>
       <Display counter={ counter } />
-      <button onClick={handlePlusClick}>plus</button>
-      <button onClick={handleMinusClick}>minus</button>
-      <button onClick={handleZeroClick}>zero</button>
+      <Button handleClick={ handlePlusClick } name='plus' />
+      <Button handleClick={ handleMinusClick } name='minus' />
+      <Button handleClick={ handleZeroClick } name='zero' />
     </div>
   )
 }
