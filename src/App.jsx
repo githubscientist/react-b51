@@ -12,14 +12,16 @@ function App() {
 
   const [counter, setCounter] = useState(0);
 
-  setTimeout(() => {
-    setCounter(counter + 1);
-  }, 1000);
 
-  console.log('rendering...', counter);
+  function handleClick() {
+    setCounter(counter + 1);
+  }
 
   return (
-    <div>App</div>
+    <div>
+      <p>{ counter }</p>
+      <button onClick={handleClick}>plus</button>
+    </div>
   )
 }
 
