@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Notes({notes}) {
   return (
@@ -7,7 +8,7 @@ function Notes({notes}) {
           <ul>
               {
                   notes.map(note => 
-                      <li key={note.id}>{ note.content }</li>
+                      <li key={note.id}><Link to={`/notes/${note.id}`}>{ note.content }</Link></li>
                   )
               }
           </ul>
