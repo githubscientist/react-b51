@@ -4,7 +4,7 @@ import Home from './components/Home';
 import Notes from './components/Notes';
 import Users from './components/Users';
 
-function App() {
+function App({notes}) {
 
   const padding = {
     padding: 5,
@@ -20,7 +20,7 @@ function App() {
 
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/notes' element={<Notes />} />
+        <Route path='/notes' element={<Notes notes={ notes } />} />
         <Route path='/users' element={ <Users />} />
       </Routes>
     </Router>
