@@ -1,36 +1,43 @@
-// passing data from child to parent component
 import React, { useState } from 'react';
+import Home from './components/Home';
+import Notes from './components/Notes';
+import Users from './components/Users';
 
-// child component
-function ChildComponent({ sendDataToParent }) {
-  // data to be passed to the parent component
-  let message = `Hello Parent!`;
-
-  const sendData = () => {
-    sendDataToParent(message);
-  }
-
-  return (
-    <div>
-      <button onClick={sendData}>Send Data to Parent</button>
-    </div>
-  )
-}
-
-// parent component
 function App() {
 
-  // define a state to store the child data in the parent component
-  const [dataFromChild, setDataFromChild] = useState('');
+  // create a state to store the current page
+  const [page, setPage] = useState('home');
 
-  const handleDataFromChild = (message) => {
-    setDataFromChild(message);
+  const toPage = (page) => (event) => {
+    event.preventDefault();
+    setPage(page);
+  }
+
+  const content = () => {
+    if (page === 'home') {
+      return <Home />
+    } else if (page === 'notes') {
+      return <Notes />
+    } else if (page === 'users') {
+      return <Users />
+    }
+  }
+
+  // object to add padding style to the elements
+  const padding = {
+    padding: 5,
   }
 
   return (
     <div>
-      <div>Data From Child: {dataFromChild}</div>
-      <ChildComponent sendDataToParent={ handleDataFromChild } />
+      <div>
+        <a href='' style={padding} onClick={toPage('home')}>home</a>
+        <a href='' style={padding} onClick={toPage('notes')}>notes</a>
+        <a href='' style={padding} onClick={toPage('users')}>users</a>
+      </div>
+
+      {/* render the content of the component for the current set page */}
+      { content() }
     </div>
   )
 }
