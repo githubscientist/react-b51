@@ -1,10 +1,13 @@
 import React from 'react';
 import './styles/App.css';
 
+// npm install bootstrap@4.6.0
 // import bootstrap
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.bundle';
 
+// npm i -S @fortawesome/fontawesome-svg-core @fortawesome/react-fontawesome @fortawesome/free-regular-svg-icons @fortawesome/free-solid-svg-icons @fortawesome/free-brands-svg-icons
+// npm i @fortawesome/fontawesome-free@5.15.3
 // import fontawesome
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
