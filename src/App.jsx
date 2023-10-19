@@ -5,6 +5,9 @@ import './styles/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.bundle';
 
+// import fontawesome
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
 function App() {
   return (
     <div>
