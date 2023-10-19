@@ -10,10 +10,13 @@ import 'bootstrap/dist/js/bootstrap.bundle';
 // npm i @fortawesome/fontawesome-free@5.15.3
 // import fontawesome
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import { Link, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import Login from './components/Login';
 
 function App() {
   return (
-    <div>
+    <Router>
+      <div>
     <div id="wrapper">
         <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
             <a className="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -85,7 +88,8 @@ function App() {
                 <div id="collapsePages" className="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div className="bg-white py-2 collapse-inner rounded">
                         <h6 className="collapse-header">Login Screens:</h6>
-                        <a className="collapse-item" href="login.html">Login</a>
+                  {/* <a className="collapse-item" href="login.html">Login</a> */}
+                      <Link to='/login' className='collapse-item'>Login</Link>
                         <a className="collapse-item" href="register.html">Register</a>
                         <a className="collapse-item" href="forgot-password.html">Forgot Password</a>
                         <div className="collapse-divider"></div>
@@ -121,7 +125,12 @@ function App() {
             </div>
         </ul>
       </div>
+
+      <Routes>
+        <Route path='/login' element={<Login />} />
+      </Routes>
       </div>
+    </Router>
   )
 }
 
