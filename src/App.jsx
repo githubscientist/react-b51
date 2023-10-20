@@ -1,6 +1,9 @@
-// props drilling: passing the props from the parent component to the nested child components through multiple levels
-import React, { useState } from 'react';
+// Context API: It is to manage and share the states across the nested components or component tree without need to pass the props data down through multiple levels of the nested components.
+import React, { createContext, useState } from 'react';
 import ChildComponent from './components/ChildComponent';
+
+// create a context for sharing the message data
+const MessageContext = createContext();
 
 // parent component: App
 function App() {
@@ -13,9 +16,13 @@ function App() {
       <div>
           <h1>Parent Component</h1>
           <hr></hr>
-          <ChildComponent message={message} coins={ coins } />
+          {/* provide the context to the nested components */}
+          <MessageContext.Provider value={{message, coins}}>
+              <ChildComponent />
+          </MessageContext.Provider>
     </div>
   )
 }
 
-export default App;
+// export the created context
+export { App as default, MessageContext };

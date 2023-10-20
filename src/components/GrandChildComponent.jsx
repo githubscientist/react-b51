@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { MessageContext } from '../App';
 
 // wrapped inside the child component
 // data: message should come from the parent component
-function GrandChildComponent({ message, coins }) {
+function GrandChildComponent() {
+
+    const { message, coins } = useContext(MessageContext);
 
     const coinsSum = () => {
         return coins.reduce((prev, curr) => prev + curr, 0);

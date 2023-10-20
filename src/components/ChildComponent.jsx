@@ -1,16 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import GrandChildComponent from './GrandChildComponent';
+import { MessageContext } from '../App';
 
 // child component wrapped inside the parent component
 // receive the data message from the App: parent component as props
-function ChildComponent({ message, coins }) {
+function ChildComponent() {
+
+    // const { message, coins } = useContext(MessageContext);
+
   return (
-      <div>
-          <h2>Child Component</h2>
-          <p>Message from Parent: { message }</p>
-          <hr></hr>
-          <GrandChildComponent message={message} coins={ coins } />
-    </div>
+      <MessageContext.Consumer>
+          {(data) => (
+              <div>
+                <h2>Child Component</h2>
+                <p>Message from Parent: { data.message }</p>
+                <hr></hr>
+                <GrandChildComponent />
+            </div>
+          )   
+          }
+      </MessageContext.Consumer>
   )
 }
 
