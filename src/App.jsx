@@ -1,28 +1,21 @@
-// Context API: It is to manage and share the states across the nested components or component tree without need to pass the props data down through multiple levels of the nested components.
 import React, { createContext, useState } from 'react';
-import ChildComponent from './components/ChildComponent';
+import Profile from './components/Profile';
 
-// create a context for sharing the message data
-const MessageContext = createContext();
+// Create a context object using the createContext function from React
+const ProfileContext = createContext();
 
-// parent component: App
+// Define a state variable called profileName using the useState hook and set its initial alue to an empty string.
 function App() {
-
-    // this message should be rendered inside the grandchild component
-    const [message, setMessage] = useState('Hello, Grand Child!');
-    const [coins, setCoins] = useState([1, 2, 3, 4, 5]);
-
+    const [profileName, setProfileName] = useState('');
   return (
       <div>
-          <h1>Parent Component</h1>
-          <hr></hr>
-          {/* provide the context to the nested components */}
-          <MessageContext.Provider value={{message, coins}}>
-              <ChildComponent />
-          </MessageContext.Provider>
+          {/* Wrap the Profile component with the context provider component */}
+          {/* passing the profileName state and its corresponding setter function as the value prop.*/}
+          <ProfileContext.Provider value={{ profileName, setProfileName }}>
+              <Profile />
+          </ProfileContext.Provider>
     </div>
   )
 }
 
-// export the created context
-export { App as default, MessageContext };
+export {App as default, ProfileContext};
