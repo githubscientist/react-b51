@@ -2,20 +2,70 @@ import React, { useRef } from 'react';
 
 function App() {
 
-  // get the reference of the button
-  const bodyRef = useRef(document.body);
+  const rows = useRef();
 
-  const changeColor = () => {
-    console.log(bodyRef.current);
-    const colors = ['red', 'blue', 'green', 'yellow', 'purple', 'pink', 'black', 'brown', 'orange', 'white'];
-    const randomColor = colors[Math.floor(Math.random()*10)];
-    bodyRef.current.style.backgroundColor = randomColor;
+  const changeRowColor = () => {
+    // select the elements
+    // console.log(rows.current.querySelectorAll('tbody tr'));
+    const rowsRef = rows.current.querySelectorAll('tbody tr');
+    rowsRef.forEach((row, index) => {
+      if (index % 2 == 0) {
+        row.style.backgroundColor = 'lightgrey';
+      }
+    })
   }
 
   return (
     <div>
-      <h3>Background Color Switcher</h3>
-      <button onClick={changeColor}>Change Color</button>
+      <table ref={rows}>
+        <thead>
+          <tr>
+            <th>SNO</th>
+            <th>NAME</th>
+            <th>AGE</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Sathish</td>
+            <td>30</td>
+          </tr>
+
+          <tr>
+            <td>2</td>
+            <td>Krish</td>
+            <td>25</td>
+          </tr>
+
+          <tr>
+            <td>2</td>
+            <td>Krish</td>
+            <td>25</td>
+          </tr>
+
+          <tr>
+            <td>2</td>
+            <td>Krish</td>
+            <td>25</td>
+          </tr>
+
+          <tr>
+            <td>2</td>
+            <td>Krish</td>
+            <td>25</td>
+          </tr>
+
+          <tr>
+            <td>2</td>
+            <td>Krish</td>
+            <td>25</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <button onClick={changeRowColor}>Change Row Color</button>
     </div>
   )
 }
