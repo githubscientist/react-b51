@@ -3,7 +3,7 @@ import './styles/App.css';
 
 function App() {
 
-  const rows = useRef();
+  const rows = useRef(null);
 
   const changeRowColor = () => {
     // select the elements
