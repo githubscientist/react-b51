@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import './styles/App.css';
 
 function App() {
 
@@ -17,7 +18,7 @@ function App() {
 
   return (
     <div>
-      <table ref={rows}>
+      <table ref={rows} className='styledTable'>
         <thead>
           <tr>
             <th>SNO</th>
