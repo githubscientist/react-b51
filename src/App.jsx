@@ -6,6 +6,7 @@ function App() {
   const bodyRef = useRef(document.body);
 
   const changeColor = () => {
+    console.log(bodyRef.current);
     const colors = ['red', 'blue', 'green', 'yellow', 'purple', 'pink', 'black', 'brown', 'orange', 'white'];
     const randomColor = colors[Math.floor(Math.random()*10)];
     bodyRef.current.style.backgroundColor = randomColor;
