@@ -7,18 +7,16 @@
   without any unnecessary re-renders
 
 */
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 function App() {
 
   // create a reference using useRef hook
   const inputRef = useRef(null);
 
-  const handleButtonClick = () => {
-    // console.log(inputRef.current.value);
-    // inputRef.current.value = 'sathish';
+  useEffect(() => {
     inputRef.current.focus();
-  }
+  }, []);
 
   return (
     <div>
@@ -27,8 +25,6 @@ function App() {
         placeholder='type a note...'
         ref={inputRef}
       />
-
-      <button onClick={handleButtonClick}>Focus Input</button>
     </div>
   )
 }
