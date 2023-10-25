@@ -1,21 +1,36 @@
-import React, { createContext, useState } from 'react';
-import Profile from './components/Profile';
+// useRef hook: 
+/*
 
-// Create a context object using the createContext function from React
-const ProfileContext = createContext();
+  - It's a react's built in feature
+  - To create and manage references of DOM elements
+  - We can manipulate the element using the reference
+  without any unnecessary re-renders
 
-// Define a state variable called profileName using the useState hook and set its initial alue to an empty string.
+*/
+import React, { useRef } from 'react';
+
 function App() {
-    const [profileName, setProfileName] = useState('');
+
+  // create a reference using useRef hook
+  const inputRef = useRef(null);
+
+  const handleButtonClick = () => {
+    // console.log(inputRef.current.value);
+    // inputRef.current.value = 'sathish';
+    inputRef.current.focus();
+  }
+
   return (
-      <div>
-          {/* Wrap the Profile component with the context provider component */}
-          {/* passing the profileName state and its corresponding setter function as the value prop.*/}
-          <ProfileContext.Provider value={{ profileName, setProfileName }}>
-              <Profile />
-          </ProfileContext.Provider>
+    <div>
+      <input 
+        type='text'
+        placeholder='type a note...'
+        ref={inputRef}
+      />
+
+      <button onClick={handleButtonClick}>Focus Input</button>
     </div>
   )
 }
 
-export {App as default, ProfileContext};
+export default App;
