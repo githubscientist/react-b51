@@ -1,19 +1,27 @@
-import React, { useReducer, useState } from 'react';
-import { initialState, reducer } from './reducers/countReducer';
+import React from 'react';
+import './styles/App.css';
 
 function App() {
-
-  const [state, dispatch] = useReducer(reducer, initialState);
-
   return (
     <div>
-      <h3>Counter: { state.count }</h3>
-      <button onClick={() => dispatch({ type: 'incr' })}>Increment</button>
-      <button onClick={() => dispatch({ type: 'decr' })}>Decrement</button>
-      <button onClick={() => dispatch({ type: 'reset' })}>Reset</button>
+      <div className='row'>
+        <button className='square'></button>
+        <button className='square'></button>
+        <button className='square'></button>
+      </div>
 
-      <h4>Clicks History</h4>
-      <p>{ state.clicksHistory.join(' ') }</p>
+      <div className='row'>
+        <button className='square'></button>
+        <button className='square'></button>
+        <button className='square'></button>
+      </div>
+
+      <div className='row'>
+        <button className='square'></button>
+        <button className='square'></button>
+        <button className='square'></button>
+      </div>
+
     </div>
   )
 }
