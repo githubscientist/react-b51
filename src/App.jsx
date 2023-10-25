@@ -1,72 +1,38 @@
-import React, { useRef } from 'react';
-import './styles/App.css';
+import React, { useState } from 'react';
 
 function App() {
 
-  const rows = useRef(null);
+  const [count, setCount] = useState(0);
+  const [clicksHistory, setClicksHistory] = useState([]);
 
-  const changeRowColor = () => {
-    // select the elements
-    // console.log(rows.current.querySelectorAll('tbody tr'));
-    const rowsRef = rows.current.querySelectorAll('tbody tr');
-    rowsRef.forEach((row, index) => {
-      if (index % 2 == 0) {
-        row.style.backgroundColor = 'lightgrey';
-      }
-    })
+  const incrementHandler = () => {
+    if (count < 10) {
+      setCount(count + 1);
+      setClicksHistory(clicksHistory.concat('Incr'));
+    }
+  }
+
+  const decrementHandler = () => {
+    if (count > 0) {
+      setCount(count - 1);
+      setClicksHistory(clicksHistory.concat('Decr'));
+    }
+  }
+
+  const resetHandler = () => {
+    setCount(0);
+    setClicksHistory(clicksHistory.concat('Reset'));
   }
 
   return (
     <div>
-      <table ref={rows} className='styledTable'>
-        <thead>
-          <tr>
-            <th>SNO</th>
-            <th>NAME</th>
-            <th>AGE</th>
-          </tr>
-        </thead>
+      <h3>Counter: { count }</h3>
+      <button onClick={incrementHandler}>Increment</button>
+      <button onClick={decrementHandler}>Decrement</button>
+      <button onClick={resetHandler}>Reset</button>
 
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>Sathish</td>
-            <td>30</td>
-          </tr>
-
-          <tr>
-            <td>2</td>
-            <td>Krish</td>
-            <td>25</td>
-          </tr>
-
-          <tr>
-            <td>2</td>
-            <td>Krish</td>
-            <td>25</td>
-          </tr>
-
-          <tr>
-            <td>2</td>
-            <td>Krish</td>
-            <td>25</td>
-          </tr>
-
-          <tr>
-            <td>2</td>
-            <td>Krish</td>
-            <td>25</td>
-          </tr>
-
-          <tr>
-            <td>2</td>
-            <td>Krish</td>
-            <td>25</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <button onClick={changeRowColor}>Change Row Color</button>
+      <h4>Clicks History</h4>
+      <p>{ clicksHistory.join(' ') }</p>
     </div>
   )
 }
