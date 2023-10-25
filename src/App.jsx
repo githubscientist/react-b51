@@ -13,7 +13,7 @@ function App() {
       <button onClick={() => dispatch({ type: 'reset' })}>Reset</button>
 
       <h4>Clicks History</h4>
-      <p>{  }</p>
+      <p>{ state.clicksHistory.join(' ') }</p>
     </div>
   )
 }
