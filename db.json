@@ -32,8 +32,13 @@
     },
     {
       "id": 7,
-      "content": "axios for api calls",
+      "content": "Axios for api calls",
       "important": false
+    },
+    {
+      "id": 8,
+      "content": "A New Note for Testing",
+      "important": true
     }
   ]
 }
