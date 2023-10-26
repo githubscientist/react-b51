@@ -2,19 +2,14 @@ import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
 import ReadNotes from './components/ReadNotes';
 import CreateNote from './components/CreateNote';
+import { Link, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import Dashboard from './components/Dashboard';
 
 function App() {
-
-  // define a state to store the notes from props
   const [notes, setNotes] = useState([]);
-
   const [showStatus, setShowStatus] = useState('all');
-
-  // states for adding new note form
   const [newNoteContent, setNewNoteContent] = useState('');
   const [newNoteImportant, setNewNoteImportant] = useState('true');
-
-  // define a contentRef to access and manipulate the content element
   const newNoteContentRef = useRef(null);
 
   const fetchNotes = async () => {
@@ -27,24 +22,18 @@ function App() {
   } 
 
   useEffect(() => {
-    newNoteContentRef.current.focus();
-  }, []); 
-
-  useEffect(() => {
     fetchNotes();
   }, []); 
 
   const addNote = (event) => {
     event.preventDefault();
-    
-    // create a new note object
+
     let noteObject = {
       id: notes.length + 1,
       content: newNoteContent,
       important: newNoteImportant == 'true',
     }
 
-    // setNotes(notes.concat(noteObject));
     console.log('adding a new note...');
     axios
       .post('http://localhost:3001/notes/', noteObject)
@@ -52,7 +41,6 @@ function App() {
         console.log('note added successfully...');
       })
 
-    // clear the inputs
     setNewNoteContent('');
     setNewNoteImportant('');
 
@@ -65,12 +53,24 @@ function App() {
     setShowStatus(event.target.value);
   }
 
+  const padding = {
+    paddingRight: 15,
+  }
+
   return (
-    <div>
-      <ReadNotes showStatus={showStatus} handleStatusChange={handleStatusChange} notes={ notes } />
-      <hr></hr>
-      <CreateNote addNote={addNote} newNoteContent={newNoteContent} newNoteImportant={newNoteImportant} newNoteContentRef={newNoteContentRef} setNewNoteContent={setNewNoteContent} setNewNoteImportant={ setNewNoteImportant} />
-    </div>
+    <Router>
+      <div>
+        <Link to="/" style={padding}>Dashboard</Link>
+        <Link to="/read" style={padding}>Read Notes</Link>
+        <Link to="/create" style={padding}>Create Note</Link>
+      </div>
+
+      <Routes>
+        <Route path='/' element={<Dashboard />} />
+        <Route path='/read' element={<ReadNotes showStatus={showStatus} handleStatusChange={handleStatusChange} notes={notes} />} />
+        <Route path='/create' element={<CreateNote addNote={addNote} newNoteContent={newNoteContent} newNoteImportant={newNoteImportant} newNoteContentRef={newNoteContentRef} setNewNoteContent={setNewNoteContent} setNewNoteImportant={ setNewNoteImportant} />} />
+      </Routes>
+    </Router>
   )
 }
 
