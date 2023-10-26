@@ -11,7 +11,7 @@ function App(props) {
 
   // states for adding new note form
   const [newNoteContent, setNewNoteContent] = useState('');
-  const [newNoteImportant, setNewNoteImportant] = useState('');
+  const [newNoteImportant, setNewNoteImportant] = useState('true');
 
   // define a contentRef to access and manipulate the content element
   const newNoteContentRef = useRef(null);
@@ -114,8 +114,8 @@ function App(props) {
             value={newNoteImportant}
           >
             <option disabled>--select--</option>
-            <option>true</option>
-            <option>false</option>
+            <option value='true'>true</option>
+            <option value='false'>false</option>
           </select>
         </label>
         <br /><br />
