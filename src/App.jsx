@@ -1,11 +1,10 @@
-import React, { useRef, useState } from 'react';
+import axios from 'axios';
+import React, { useEffect, useRef, useState } from 'react';
 
-// 3. read the notes list and render it here
-
-function App(props) {
+function App() {
 
   // define a state to store the notes from props
-  const [notes, setNotes] = useState(props.notes);
+  const [notes, setNotes] = useState([]);
 
   const [showStatus, setShowStatus] = useState('all');
 
@@ -15,6 +14,23 @@ function App(props) {
 
   // define a contentRef to access and manipulate the content element
   const newNoteContentRef = useRef(null);
+
+  const fetchNotes = async () => {
+    try {
+      const response = await axios.get('http://localhost:3001/notes/');
+      setNotes(response.data);
+    } catch (error) {
+      console.log('Failed to fetch notes:', error);
+    }
+  } 
+
+  useEffect(() => {
+    newNoteContentRef.current.focus();
+  }, []); 
+
+  useEffect(() => {
+    fetchNotes();
+  }, []); 
 
   const addNote = (event) => {
     event.preventDefault();
@@ -26,13 +42,21 @@ function App(props) {
       important: newNoteImportant == 'true',
     }
 
-    setNotes(notes.concat(noteObject));
+    // setNotes(notes.concat(noteObject));
+    console.log('adding a new note...');
+    axios
+      .post('http://localhost:3001/notes/', noteObject)
+      .then(response => {
+        console.log('note added successfully...');
+      })
 
     // clear the inputs
     setNewNoteContent('');
     setNewNoteImportant('');
 
     newNoteContentRef.current.focus();
+
+    fetchNotes();
   }
 
   const handleStatusChange = (event) => {
