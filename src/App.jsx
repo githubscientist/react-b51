@@ -9,9 +9,29 @@ function App(props) {
 
   // states for adding new note form
   const [newNoteContent, setNewNoteContent] = useState('');
+  const [newNoteImportant, setNewNoteImportant] = useState('');
 
   // define a contentRef to access and manipulate the content element
   const newNoteContentRef = useRef(null);
+
+  const addNote = (event) => {
+    event.preventDefault();
+    
+    // create a new note object
+    let noteObject = {
+      id: notes.length + 1,
+      content: newNoteContent,
+      important: newNoteImportant === 'true',
+    }
+
+    setNotes(notes.concat(noteObject));
+
+    // clear the inputs
+    setNewNoteContent('');
+    setNewNoteImportant('');
+
+    newNoteContentRef.current.focus();
+  }
 
   return (
     <div>
@@ -26,7 +46,7 @@ function App(props) {
       </ul>
       <hr></hr>
       <h2>Add a New Note</h2>
-      <form>
+      <form onSubmit={addNote}>
         <label>
           Content: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <input 
@@ -36,6 +56,20 @@ function App(props) {
             onChange={e => setNewNoteContent(e.target.value)}
           />
         </label>
+        <br /><br />
+        <label>
+          Is important: &nbsp;&nbsp;
+          <select
+            onChange={e => setNewNoteImportant(e.target.value)}
+            value={newNoteImportant}
+          >
+            <option disabled>--select--</option>
+            <option>true</option>
+            <option>false</option>
+          </select>
+        </label>
+        <br /><br />
+        <button type='submit'>Add New Note</button>
       </form>
     </div>
   )
