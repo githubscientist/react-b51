@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 // 3. read the notes list and render it here
 
@@ -6,6 +6,12 @@ function App(props) {
 
   // define a state to store the notes from props
   const [notes, setNotes] = useState(props.notes);
+
+  // states for adding new note form
+  const [newNoteContent, setNewNoteContent] = useState('');
+
+  // define a contentRef to access and manipulate the content element
+  const newNoteContentRef = useRef(null);
 
   return (
     <div>
@@ -18,6 +24,19 @@ function App(props) {
           )
         }
       </ul>
+      <hr></hr>
+      <h2>Add a New Note</h2>
+      <form>
+        <label>
+          Content: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input 
+            type='text'
+            ref={newNoteContentRef}
+            value={newNoteContent}
+            onChange={e => setNewNoteContent(e.target.value)}
+          />
+        </label>
+      </form>
     </div>
   )
 }
