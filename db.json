@@ -29,26 +29,6 @@
       "id": 6,
       "content": "Conditional rendering with Arraylists",
       "important": true
-    },
-    {
-      "id": 7,
-      "content": "Axios for api calls",
-      "important": false
-    },
-    {
-      "id": 8,
-      "content": "A New Note for Testing",
-      "important": true
-    },
-    {
-      "id": 9,
-      "content": "test data",
-      "important": false
-    },
-    {
-      "id": 10,
-      "content": "notes app using react",
-      "important": false
     }
   ]
 }

@@ -5,6 +5,7 @@ import CreateNote from './components/CreateNote';
 import { Link, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
 import EditNote from './components/EditNote';
+import DeleteNote from './components/DeleteNote';
 
 function App() {
   const [notes, setNotes] = useState([]);
@@ -66,14 +67,56 @@ function App() {
         <Link to="/read" style={padding}>Read Notes</Link>
         <Link to="/create" style={padding}>Create Note</Link>
         <Link to='/update' style={padding}>Update Note</Link>
+        <Link to='/delete' style={padding}>Delete Note</Link>
       </div>
 
       <Routes>
-        <Route path='/' element={<Dashboard />} />
-        <Route path='/read' element={<ReadNotes showStatus={showStatus} handleStatusChange={handleStatusChange} notes={notes} />} />
-        <Route path='/create' element={<CreateNote addNote={addNote} newNoteContent={newNoteContent} newNoteImportant={newNoteImportant} newNoteContentRef={newNoteContentRef} setNewNoteContent={setNewNoteContent} setNewNoteImportant={setNewNoteImportant} />} />
+        <Route
+          path='/'
+          element={<Dashboard />} 
+        />
+
+        <Route
+          path='/read'
+          element={
+            <ReadNotes
+              showStatus={showStatus}
+              handleStatusChange={handleStatusChange} notes={notes} 
+          />
+          } 
+        />
         
-        <Route path='/update' element={<EditNote notes={notes} setNotes={setNotes} fetchNotes={ fetchNotes } /> } />
+        <Route
+          path='/create'
+          element={
+            <CreateNote
+              addNote={addNote}
+              newNoteContent={newNoteContent} newNoteImportant={newNoteImportant} newNoteContentRef={newNoteContentRef} setNewNoteContent={setNewNoteContent} setNewNoteImportant={setNewNoteImportant} />
+          } 
+        />
+        
+        <Route
+          path='/update'
+          element={
+            <EditNote
+              notes={notes}
+              setNotes={setNotes}
+              fetchNotes={fetchNotes} 
+              
+            />
+          } 
+        />
+
+        <Route 
+          path='/delete'
+          element={
+            <DeleteNote
+              notes={notes}
+              setNotes={setNotes}
+              fetchNotes={ fetchNotes}
+            />
+          }
+        />
       </Routes>
     </Router>
   )
