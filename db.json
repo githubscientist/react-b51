@@ -3,7 +3,7 @@
     {
       "id": 1,
       "content": "Javascript is awesome!",
-      "important": true
+      "important": false
     },
     {
       "id": 2,
