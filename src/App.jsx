@@ -15,6 +15,7 @@ function App() {
   const fetchNotes = async () => {
     try {
       const response = await axios.get('http://localhost:3001/notes/');
+      // console.log(response.data);
       setNotes(response.data);
     } catch (error) {
       console.log('Failed to fetch notes:', error);
