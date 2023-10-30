@@ -1,23 +1,38 @@
-.error {
-    color: red;
+.header {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    align-items: center;
+    border-bottom: 0.5px solid gray;
 }
 
-label {
-    display: block;
-    margin-bottom: 5px;
+.menuIcon {
+    grid-column: 1 / 2;
+    text-align: left;
 }
 
-input[type='text'], input[type='email'] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
+.wordleHeading {
+    grid-column: 2 / 3;
+    text-align: center;
 }
 
-button {
-    background: lightblue;
-    padding: 8px 40px;
-    padding-top: 10px;
-    display: block;
-    border: none;
+.rightIcons {
+    grid-column: 3 / 4;
+    text-align: right;
+}
+
+.icon {
+    margin-right: 20px;
     cursor: pointer;
+}
+
+.rightCornerButton {
+    border-radius: 50px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+@media (max-width: 1028px) {
+    .header {
+        grid-template-columns: 1fr 2fr;
+    }
 }
