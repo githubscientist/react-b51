@@ -9,12 +9,13 @@ import { createStore } from 'redux';
     }
 */
 const counterReducer = (state = 0, action) => {
-    console.log(action);
     switch (action.type) {
         case 'INCR':
             return state + 1;
         case 'DECR':
             return state - 1;
+        case 'ZERO':
+            return 0;
         default:
             return state;
     }
@@ -23,28 +24,15 @@ const counterReducer = (state = 0, action) => {
 // create a store
 const store = createStore(counterReducer);
 
-// get the current store state
-console.log(store.getState());
-
-// increment the counter
-store.dispatch({
-    type: 'INCR'
+store.subscribe(() => {
+    console.log(store.getState());
 })
 
-console.log(store.getState());
-
 // increment the counter
-store.dispatch({
-    type: 'INCR'
-})
+store.dispatch({type: 'INCR'})
 
-console.log(store.getState());
+store.dispatch({type: 'INCR'})
 
-// increment the counter
-store.dispatch({
-    type: 'DECR'
-})
-
-console.log(store.getState());
+store.dispatch({type: 'DECR'})
 
 ReactDOM.createRoot(document.getElementById('root')).render(<App />);
