@@ -1,27 +1,50 @@
-import { useDispatch, useSelector } from "react-redux";
+import React from 'react';
+import { createStore } from 'redux';
 
-const App = () => {
+const noteReducer = (state = [], action) => {
+  if (action.type == 'NEW_NOTE') {
+    state.push(action.payload);
+    return state;
+  }
 
-  const dispatch = useDispatch();
-  const counter = useSelector((state) => state);
+  return state;
+}
 
-    return (
-        <div>
-            <div>
-                Count: {counter}
-            </div>
+const store = createStore(noteReducer);
 
-            <button
-                onClick={() => dispatch({type: 'INCR'})}
-            >plus</button>
-            <button
-                onClick={() => dispatch({ type: 'DECR' })}
-            >minus</button>
-            <button
-                onClick={() => dispatch({ type: 'ZERO' })}
-            >zero</button>
-        </div>
-    )
+store.dispatch({
+  type: 'NEW_NOTE',
+  payload: {
+    id: 1,
+    content: "Javascript is awesome!",
+    important: true
+  }
+})
+
+store.dispatch({
+  type: 'NEW_NOTE',
+  payload: {
+    id: 2,
+    content: "Browser can only execute Javascript",
+    important: false
+  }
+})
+
+function App() {
+
+  return (
+    <div>
+      <ul>
+        {
+          store.getState().map(note => 
+            <li key={note.id}>
+              { note.content } <strong>{ note.important ? '★' : ''}</strong>
+            </li>
+          )
+        }
+      </ul>
+    </div>
+  )
 }
 
 export default App;
