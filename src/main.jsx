@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App.jsx';
+// import App from './App.jsx';
 import { createStore } from 'redux';
 
 /*
@@ -24,15 +24,32 @@ const counterReducer = (state = 0, action) => {
 // create a store
 const store = createStore(counterReducer);
 
-store.subscribe(() => {
-    console.log(store.getState());
-})
+const App = () => {
+    return (
+        <div>
+            <div>
+                Count: {store.getState()}
+            </div>
 
-// increment the counter
-store.dispatch({type: 'INCR'})
+            <button
+                onClick={() => store.dispatch({type: 'INCR'})}
+            >plus</button>
+            <button
+                onClick={() => store.dispatch({ type: 'DECR' })}
+            >minus</button>
+            <button
+                onClick={() => store.dispatch({ type: 'ZERO' })}
+            >zero</button>
+        </div>
+    )
+}
 
-store.dispatch({type: 'INCR'})
+const root = ReactDOM.createRoot(document.getElementById('root'));
 
-store.dispatch({type: 'DECR'})
+const renderApp = () => {
+    root.render(<App />);
+}
 
-ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+renderApp();
+
+store.subscribe(renderApp);
