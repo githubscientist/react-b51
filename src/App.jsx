@@ -4,19 +4,35 @@ import React, { useState } from 'react';
 
 function App() {
 
-  const [like, setLike] = useState(0);
-  const [dislike, setDislike] = useState(0);
+  const [value, setValue] = useState({
+    likes: 0,
+    dislikes: 0
+  });
+
+  const handleLikeButton = () => {
+    setValue({
+      ...value,
+      likes: value.likes + 1,
+    });
+  }
+
+  const handleDislikeButton = () => {
+    setValue({
+      ...value,
+      dislikes: value.dislikes + 1,
+    });
+  }
 
   return (
     <div>
       <div>
-        <button onClick={() => setLike(like + 1)}>{<FontAwesomeIcon icon={faThumbsUp} size='2xl'/>}</button>
-        &nbsp;&nbsp;&nbsp;<span>{ like }</span>
+        <button onClick={handleLikeButton}>{<FontAwesomeIcon icon={faThumbsUp} size='2xl'/>}</button>
+        &nbsp;&nbsp;&nbsp;<span>{ value.likes }</span>
       </div>
       <p></p>
       <div>
-        <button onClick={() => setDislike(dislike + 1)}>{<FontAwesomeIcon icon={faThumbsDown} size='2xl'/>}</button>
-        &nbsp;&nbsp;&nbsp;<span>{dislike}</span>
+        <button onClick={handleDislikeButton}>{<FontAwesomeIcon icon={faThumbsDown} size='2xl'/>}</button>
+        &nbsp;&nbsp;&nbsp;<span>{ value.dislikes }</span>
       </div>
     </div>
   )
