@@ -2,44 +2,20 @@ import { faToggleOff, faToggleOn } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useReducer } from 'react';
 
-/*
-  useReducer: useReducer is a hook that is used for state management.
-
-  useReducer uses reducers which helps us to keep the states and actions separated.
-
-  useReducer uses an initial state and returns the current state and a dispatch function.
-*/
-
 const initialState = {
-  isOn: false
+  isOn: false,
+  isDisabled: false
 }
-
-/*
-  At the beginning:
-    state = initialState = {isOn: false}
-  
-  After buttonClick: 
-    dispatch gets called with action = {type: 'TOGGLE'}
-
-    reducer gets called with state = initialState and action = {type: 'TOGGLE'}
-
-    matching case 'TOGGLE' gets executed and it returns the new state.
-    new state is an object
-    {
-      isOn: true
-    }
-
-    returned object is assigned to state and state becomes
-    state = {
-      isOn: true
-    }
-*/
 
 const reducer = (state, action) => {
   switch (action.type) {
     case 'TOGGLE':
       return {
         isOn: !state.isOn
+      }
+    case 'DISABLE':
+      return {
+        isDisabled: !state.isDisabled
       }
     default:
       return state;
@@ -51,14 +27,26 @@ function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const toggleSwitch = () => {
-    dispatch({type: 'TOGGLE'});
+    if (!state.isDisabled) {
+      dispatch({type: 'TOGGLE'});
+    }
+  }
+
+  const toggleDisable = () => {
+    dispatch({type: 'DISABLE'});
   }
 
   return (
-    <div
-      onClick={toggleSwitch}
-    >
-      <FontAwesomeIcon icon={state.isOn ? faToggleOn : faToggleOff} size='2xl'/>
+    <div>
+      <div
+        onClick={toggleSwitch}
+      >
+        <FontAwesomeIcon icon={state.isOn ? faToggleOn : faToggleOff} size='2xl'/>
+      </div>
+
+      <button onClick={toggleDisable}>
+        { state.isDisabled ? 'Enable' : 'Disable' }
+      </button>
     </div>
   )
 }
