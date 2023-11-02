@@ -1,31 +1,26 @@
 /*
-  useRef() definition: useRef returns a mutable ref object whose .current property is initialized to the passed argument (initialValue). The returned object will persist for the full lifetime of the component.
+  useRef variable changes do not cause a re-render of the component.
 */
 
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 
 function App() {
 
-  const inputRef = useRef(null);
+  const renderCount = useRef(0);
+  const [count, setCount] = useState(0);
 
-  // print the inputRef current value
-  // inputRef -> {current: input} object
-  // inputRef.current -> input DOM node (element)
-  // inputRef.current.value -> input DOM node value
-  console.log(inputRef.current);
+  // console.log(renderCount);
 
-  const handleInputChange = () => {
-    console.log(inputRef.current.value);
+  const increment = () => {
+    renderCount.current++;
+    setCount(count + 1);
   }
 
   return (
     <div>
-      <input
-        type='text'
-        ref={inputRef}
-        onChange={handleInputChange}
-      ></input>
-    </div>
+      <p>Render count: { renderCount.current }</p>
+      <button onClick={ increment }>Increment</button>
+      </div>
   )
 }
 
