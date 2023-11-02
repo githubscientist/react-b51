@@ -1,47 +1,30 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { createNote, toggleImportanceOf } from './reducers/noteReducer';
+/*
+  useRef() definition: useRef returns a mutable ref object whose .current property is initialized to the passed argument (initialValue). The returned object will persist for the full lifetime of the component.
+*/
+
+import React, { useRef } from 'react';
 
 function App() {
 
-  const notes = useSelector(state => state);
-  const dispatch = useDispatch();
+  const inputRef = useRef(null);
 
-  const addNote = (event) => {
-    event.preventDefault();
-    const content = event.target.note.value;
-    event.target.note.value = '';
-    dispatch(createNote(content, notes.length));
-  }
+  // print the inputRef current value
+  // inputRef -> {current: input} object
+  // inputRef.current -> input DOM node (element)
+  // inputRef.current.value -> input DOM node value
+  console.log(inputRef.current);
 
-  const toggleImportance = (id) => {
-    dispatch(toggleImportanceOf(id));
+  const handleInputChange = () => {
+    console.log(inputRef.current.value);
   }
 
   return (
     <div>
-      <form onSubmit={addNote}>
-        <input 
-          placeholder='type a new note...'
-          name='note'
-        />
-        <button type='submit'>save</button>
-      </form>
-
-      <div>
-        <ul>
-          {
-            notes.map(note => 
-              <li
-                key={note.id}
-                onClick={() => toggleImportance(note.id)}
-              >
-                { note.content } <strong>{ note.important ? '★' : '☆'}</strong>
-              </li>
-            )
-          }
-        </ul>
-      </div>
+      <input
+        type='text'
+        ref={inputRef}
+        onChange={handleInputChange}
+      ></input>
     </div>
   )
 }
