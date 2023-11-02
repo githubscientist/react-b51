@@ -19,14 +19,14 @@ import React from 'react';
 
 function App() {
 
-  const fetchPosts = async () => {
-    try {
-      console.log('fetching posts...');
-      const response = await axios.get('https://jsonplaceholder.typicode.com/post');
-      console.log(response.data);
-    } catch (error) {
-      console.log('error fetching posts...', error);
-    }
+  const fetchPosts = () => {
+    console.log('fetching posts...');
+    const response = axios.get('https://jsonplaceholder.typicode.com/posts');
+    
+    setTimeout(() => {
+      console.log('posts fetched');
+      console.log(response);
+    }, 3000);
   }
 
   return (
