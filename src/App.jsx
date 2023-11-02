@@ -1,52 +1,37 @@
-import { faToggleOff, faToggleOn } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useReducer } from 'react';
+import axios from 'axios';
+import React from 'react';
 
-const initialState = {
-  isOn: false,
-  isDisabled: false
-}
+/*
+  axios: 
+    axios is a library that helps us to make http requests.
+    It returns a promise.
+    axios will internally use fetch api to make http requests.
+  
+  we can handle axios calls in two ways:
+    1. using async await -> asynchronous (but internally it is synchronous because of await keyword)
+    2. using then and catch -> synchronous
+  
+  synchronous: the statements are executed line by line.
+  asynchronous: the statements are not executed line by line or in the background one by one.
 
-const reducer = (state, action) => {
-  switch (action.type) {
-    case 'TOGGLE':
-      return {
-        isOn: !state.isOn
-      }
-    case 'DISABLE':
-      return {
-        isDisabled: !state.isDisabled
-      }
-    default:
-      return state;
-  }
-}
+  to install: npm install axios
+*/
 
 function App() {
 
-  const [state, dispatch] = useReducer(reducer, initialState);
-
-  const toggleSwitch = () => {
-    if (!state.isDisabled) {
-      dispatch({type: 'TOGGLE'});
+  const fetchPosts = async () => {
+    try {
+      console.log('fetching posts...');
+      const response = await axios.get('https://jsonplaceholder.typicode.com/post');
+      console.log(response.data);
+    } catch (error) {
+      console.log('error fetching posts...', error);
     }
-  }
-
-  const toggleDisable = () => {
-    dispatch({type: 'DISABLE'});
   }
 
   return (
     <div>
-      <div
-        onClick={toggleSwitch}
-      >
-        <FontAwesomeIcon icon={state.isOn ? faToggleOn : faToggleOff} size='2xl'/>
-      </div>
-
-      <button onClick={toggleDisable}>
-        { state.isDisabled ? 'Enable' : 'Disable' }
-      </button>
+      <button onClick={fetchPosts}>Fetch Posts</button>
     </div>
   )
 }
